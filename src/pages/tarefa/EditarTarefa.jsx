@@ -48,7 +48,6 @@ const EditarTarefa = ({
   const handleEditar = () => {
     //console.log(`id: ${idTarefa} \n titulo: ${tituloTarefa} \n descrição: ${descricaoTarefa} \n inicio: ${inicioTarefa} \n fim: ${fimTarefa} \n recurso: ${recursoTarefa} \n status: ${statusTarefa}`);
     //console.log('idTarefaSelecionada: ' + idTarefaSelecionada);
-
     setTarefas((current) =>
       current.map((obj) => {
         if (obj.idTarefa === idTarefaSelecionada) {
@@ -64,9 +63,11 @@ const EditarTarefa = ({
             statusTarefa: statusTarefa,
           };
         }
+
         return obj;
       })
     );
+
     //console.log(`Tarefas Editadas: ` + JSON.stringify(tarefas));
     handleCloseEditar();
   };
@@ -87,13 +88,11 @@ const EditarTarefa = ({
                       setTituloTarefa(e.target.value);
                     }}
                   />
-
                   <Form.Text className="text-muted">
                     Título da Tarefa.
                   </Form.Text>
                 </Form.Group>
               </Row>
-
               <Row md={12}>
                 <Form.Group className="mb-3" controlId="descricaoTarefa">
                   <Form.Control
@@ -103,13 +102,11 @@ const EditarTarefa = ({
                       setDescricaoTarefa(e.target.value);
                     }}
                   />
-
                   <Form.Text className="text-muted">
                     Descrição da Tarefa.
                   </Form.Text>
                 </Form.Group>
               </Row>
-
               <Row mt={1}>
                 <Col md={3}>
                   <Form.Group className="mb-3" controlId="inicioTarefa">
@@ -122,16 +119,14 @@ const EditarTarefa = ({
                       sx={{
                         color: "rgba(0, 0, 0, 0.6)",
                         fontWeight: 400,
-                        paddingdLeft: "13px",
+                        paddingLeft: "13px",
                       }}
                     />
-
                     <Form.Text className="text-muted">
                       Início da Tarefa.
                     </Form.Text>
                   </Form.Group>
                 </Col>
-
                 <Col md={3}>
                   <Form.Group className="mb-3" controlId="fimTarefa">
                     <Form.Control
@@ -143,14 +138,12 @@ const EditarTarefa = ({
                       sx={{
                         color: "rgba(0, 0, 0, 0.6)",
                         fontWeight: 400,
-                        paddingdLeft: "13px",
+                        paddingLeft: "13px",
                       }}
                     />
-
                     <Form.Text className="text-muted">Fim da Tarefa.</Form.Text>
                   </Form.Group>
                 </Col>
-
                 <Col md={3}>
                   <Form.Group className="mb-3" controlId="recursoTarefa">
                     <Form.Select
@@ -170,7 +163,6 @@ const EditarTarefa = ({
                     </Form.Select>
                   </Form.Group>
                 </Col>
-
                 <Col md={3}>
                   <Form.Group className="mb-3" controlId="statusTarefa">
                     <Form.Select
@@ -193,14 +185,12 @@ const EditarTarefa = ({
               </Row>
             </Form>
           </Card.Text>
-
           <Row>
             <Col md="auto">
               <Button variant="success" onClick={handleEditar}>
                 Salvar
               </Button>
             </Col>
-
             <Col md={1}>
               <Button variant="secondary" onClick={handleCloseEditar}>
                 Cancelar

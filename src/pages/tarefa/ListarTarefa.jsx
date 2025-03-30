@@ -10,6 +10,7 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import CriarTarefa from "./CriarTarefa";
 import EditarTarefa from "./EditarTarefa";
 
+//A função abaixo é usada para criar o array contendo os dados iniciais da listagem de tarefas.
 function createData(
   idTarefa,
   tituloTarefa,
@@ -30,6 +31,7 @@ function createData(
   };
 }
 
+//Definição do array contendo os dados iniciais da listagem de tarefas
 const initialRows = [
   createData(
     1,
@@ -87,6 +89,7 @@ const initialRows = [
   ),
 ];
 
+//Componente ListarTarefa
 const ListarTarefa = () => {
   const [open, setOpen] = useState(false);
   const [openEditar, setOpenEditar] = useState(false);
@@ -98,6 +101,7 @@ const ListarTarefa = () => {
   const handleOpenEditar = () => setOpenEditar(true);
   const handleCloseEditar = () => setOpenEditar(false);
 
+  //O array definido acima é setado como conteúdo do state Tarefas na renderização inicial do componente.
   useEffect(() => {
     setTarefas(initialRows);
   }, []);
@@ -105,15 +109,15 @@ const ListarTarefa = () => {
   const handleEditar = (id) => {
     setIdTarefaSelecionada(id);
 
-    let tarefaParaEditar = tarefas.filter(
-      (obj) => {
-        return obj.idTarefa === id;
-      },
-      [0]
-    );
+    //Objeto local para armazenamento da tarefa filtrada de acordo com a seleção do usuário
+    let tarefaParaEditar = tarefas.filter((obj) => {
+      return obj.idTarefa === id;
+    })[0];
 
+    //Atribuição do Objeto local, setado acima, ao state Tarefa
     setTarefa(tarefaParaEditar);
 
+    //Seta como true o state responsável pela exibição do Model de Editar Tarefa
     setOpenEditar(true);
   };
 
@@ -132,14 +136,13 @@ const ListarTarefa = () => {
           <Card.Title>Tarefas</Card.Title>
           <Card.Subtitle>Listagem de Tarefas</Card.Subtitle>
         </Card.Header>
-
         <Card.Body>
           <Card.Text>
             <Table striped bordered hover responsive>
               <thead>
                 <tr>
                   <th>#</th>
-                  <th align="right">Título</th>
+                  <th>Título</th>
                   <th align="right">Descrição</th>
                   <th align="right">Data de Início</th>
                   <th align="right">Data de Finalização</th>
@@ -149,12 +152,11 @@ const ListarTarefa = () => {
                   <th align="left"></th>
                 </tr>
               </thead>
-
               <tbody>
                 {tarefas.map((row, indice) => (
                   <tr
                     key={indice}
-                    sx={{ "&:last=child td, &:last-child th": { border: 0 } }}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <td component="th" scope="row">
                       {row.idTarefa}
@@ -180,7 +182,7 @@ const ListarTarefa = () => {
                       <Button
                         variant="contained"
                         color="error"
-                        onClick={handleDeletar(row.idTarefa)}
+                        onClick={() => handleDeletar(row.idTarefa)}
                       >
                         <AiFillDelete />
                       </Button>
@@ -190,14 +192,12 @@ const ListarTarefa = () => {
               </tbody>
             </Table>
           </Card.Text>
-
           <Row>
             <Col md="auto">
               <Button variant="success" onClick={handleOpen}>
                 Criar Tarefa
               </Button>
             </Col>
-
             <Col md={1}>
               <Button variant="secondary" className="ml-30">
                 Cancelar
@@ -206,7 +206,6 @@ const ListarTarefa = () => {
           </Row>
         </Card.Body>
       </Card>
-
       <div>
         <Modal size="lg" show={open} onHide={handleClose}>
           <Modal.Body>
@@ -218,7 +217,6 @@ const ListarTarefa = () => {
           </Modal.Body>
         </Modal>
       </div>
-
       <div>
         <Modal size="lg" show={openEditar} onHide={handleCloseEditar}>
           <Modal.Body>
